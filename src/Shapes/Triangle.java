@@ -1,60 +1,40 @@
 package Shapes;
 
-public class Triangle implements Shape {
-    private int a;
-    private int b;
-    private int c;
+public class Triangle extends Parallelogram {
+    private double side3;
 
-    //3-Arg constructor
-    public Triangle(int a, int b, int c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-    }
-    //Getters and setters
-    public int getA() {
-        return a;
+    public double getSide3() {
+        return side3;
     }
 
-    public void setA(int a) {
-        this.a = a;
+    public void setSide3(double side3) {
+        this.side3 = side3;
+    }
+    public void setSide2(double side2) {
+        super.setHeight(side2);
+    }
+    public void setSide1(double side1) {
+        super.setWidth(side1);
     }
 
-    public int getB() {
-        return b;
+
+    public Triangle(double side1, double side2, double side3) {
+        super(side1, side2);
+        this.side3 = side3;
     }
 
-    public void setB(int b) {
-        this.b = b;
-    }
-
-    public int getC() {
-        return c;
-    }
-
-    public void setC(int c) {
-        this.c = c;
-    }
-
-    //TODO: Do we use getter or just call private vars?
     @Override
-    public float perimeter() {
-        return getA() + getB() + getC();
+    public double perimeter() {
+        return super.getHeight() + super.getWidth() + getSide3();
     }
 
     @Override
     public String toString() {
         return "Triangle{" +
-                "a=" + a +
-                ", b=" + b +
-                ", c=" + c +
-                '}' + " Perimeter= " + perimeter();
+                "side1=" + super.getHeight()+
+                "side2=" + super.getWidth() +
+                "side3=" + getSide3() +
+                "} Perimeter= " + perimeter();
     }
-
-//    public static void main(String [] args)
-//    {
-//        Triangle myTri = new Triangle(4,8,12);
-//        myTri.perimeter();
-//    }
 
 }
