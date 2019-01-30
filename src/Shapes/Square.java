@@ -1,42 +1,21 @@
 package Shapes;
 
-public class Square implements Shape {
+public class Square extends Rectangle {
 
-    private int length;
-
-    //constructor
-    public Square(int length)
-    {
-        this.length = length;
+    public Square(double length) {
+        super(length,length);
     }
 
-    //length getter
-    public int getLength() {
-        return length;
+    public void setLength(double length) {
+        super.setHeight(length);
+        super.setWidth(length);
     }
-
-    //length setter
-    public void setLength(int length) {
-        if(length> 0)
-        {
-            this.length = length;
-           // throw new IndexOutOfBoundsException("hi");
-        }
-    }
-
-    public float perimeter() {
-        return 4*length;
+    public double getLength() {
+        return super.getHeight();
     }
 
     @Override
     public String toString() {
-        return  "Shape: Square\nLength: " + this.getLength() + "\nPerimeter: " + this.perimeter();
+        return "Square{ length= " + getLength() + "} Perimeter= " + super.perimeter(); //TODO: Is this OK to do? to not have a squares own perimemter function but to indicate that it has one?
     }
-//    public static void main(String[] args)
-//    {
-//        Square mySquare = new Square(5);
-//        System.out.println(mySquare.perimeter());
-//        System.out.println(mySquare.toString());
-//    }
-
 }
