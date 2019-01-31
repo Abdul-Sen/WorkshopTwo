@@ -11,7 +11,6 @@ Rectangle,3.0,5.1
 Square,5.0
 Something
 Parallelogram,3.9,9.2
-Triangle,2.3,3.2,8.8
 Triangle,4.9,5.0,8.9
 Square,-5.0
 Rectangle,8.0,2.1

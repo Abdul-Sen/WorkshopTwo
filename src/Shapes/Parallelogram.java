@@ -4,14 +4,6 @@ public class Parallelogram implements Shape {
     private double width;
     private double height;
 
-    @Override
-    public String toString() {
-        return "Parallelogram{\" +\n" +
-                "                \"width=\" + getHeight() +\n" +
-                "                \", height=" + getHeight() +
-                '}' + " Perimeter= " + perimeter();
-    }
-
 
     public double getWidth() {
         return width;
@@ -31,6 +23,10 @@ public class Parallelogram implements Shape {
 
 
     public Parallelogram(double width, double height) {
+
+        if( width <= 0 || height <= 0)
+            throw new IllegalArgumentException("Invalid side(s)");
+
         this.width = width;
         this.height = height;
     }
@@ -38,5 +34,13 @@ public class Parallelogram implements Shape {
     @Override
     public double perimeter() {
         return getHeight()*2 + getWidth()*2;
+    }
+
+    @Override
+    public String toString() {
+        return "Parallelogram{" +
+                "width=" + getWidth() +
+                ", height=" + getHeight() +
+                '}' + " Perimeter = " + perimeter();
     }
 }

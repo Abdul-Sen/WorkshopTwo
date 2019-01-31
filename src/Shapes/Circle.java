@@ -1,8 +1,14 @@
 package Shapes;
 
+import java.text.DecimalFormat;
+
 public class Circle implements Shape {
 
-    public Circle(double radius) {
+    public Circle(double radius)
+    {
+        if(radius <= 0)
+            throw new IllegalArgumentException("Invalid radius!");
+
         this.radius = radius;
     }
 

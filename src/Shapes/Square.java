@@ -2,8 +2,13 @@ package Shapes;
 
 public class Square extends Rectangle {
 
-    public Square(double length) {
+    public Square(double length)
+    {
         super(length,length);
+        if(length <= 0)
+        {
+            throw new IllegalArgumentException("Invalid side!");
+        }
     }
 
     public void setLength(double length) {
