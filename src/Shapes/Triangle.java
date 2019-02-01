@@ -1,11 +1,15 @@
 package Shapes;
 
+import java.text.DecimalFormat;
+
 public class Triangle implements Shape {
     private double side1;
     private double side2;
     private double side3;
 
     public Triangle(double side1, double side2, double side3) {
+        if(side1 + side2 < side3 || side2 + side3 < side1 || side3 + side1 < side2)
+            throw new IllegalArgumentException("Invalid side!");
         if(side1 <= 0 || side2 <= 0 || side3 <= 0)
         {
             throw new IllegalArgumentException("Invalid side!");
@@ -47,11 +51,12 @@ public class Triangle implements Shape {
 
     @Override
     public String toString() {
+        DecimalFormat df = new DecimalFormat("0.0000");
         return "Triangle{" +
-                "side1=" + side1 +
-                ", side2=" + side2 +
-                ", side3=" + side3 +
-                '}' + " Perimeter= " + perimeter();
+                "s1=" + side1 +
+                ", s2=" + side2 +
+                ", s3=" + side3 +
+                '}' + " Perimeter= " + df.format(perimeter());
     }
 }
 

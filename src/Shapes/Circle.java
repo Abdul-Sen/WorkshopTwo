@@ -8,7 +8,6 @@ public class Circle implements Shape {
     {
         if(radius <= 0)
             throw new IllegalArgumentException("Invalid radius!");
-
         this.radius = radius;
     }
 
@@ -28,8 +27,9 @@ public class Circle implements Shape {
 
     @Override
     public String toString() {
+        DecimalFormat df = new DecimalFormat("0.0000");
         return "Circle{" +
-                "radius=" + getRadius() +
-                '}' + " Perimeter= "+  perimeter();
+                "r = " + getRadius() +
+                '}' + " Perimeter= "+ df.format(perimeter());
     }
 }
