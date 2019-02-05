@@ -1,4 +1,6 @@
 import Shapes.*;
+
+import javax.naming.PartialResultException;
 import java.io.*;
 
 
@@ -93,5 +95,70 @@ public class Main {
             if(currentShape != null)
                 System.out.println(currentShape);
         }
+
+        /*
+        TASK 2 AND TASK 3
+         */
+        System.out.println("<<<<<<<<<<<<TASK 2>>>>>>>>>>>>>>>");
+
+        //setting a minimum triangle parameter
+        double minTriangleParam = 0.0;
+        double maxCircleParam = 0.0;
+
+        //TODO add logic to Break out once both are set
+        //Setting min and max
+        for (Shape currentShape : shapeArray) {
+            if (currentShape instanceof Triangle)
+            {
+                minTriangleParam = currentShape.perimeter();
+            }
+            else if(currentShape instanceof Circle)
+            {
+                if(currentShape.perimeter() > maxCircleParam)
+                {
+                    maxCircleParam = currentShape.perimeter();
+                }
+            }
+        }
+
+        //Deleting triangle with min param and removing them from array
+        for(int i = 0; i < shapeArray.length; i++)
+        {
+            // Triangle logic
+            if(shapeArray[i] instanceof Triangle)
+            {
+                if(minTriangleParam > shapeArray[i].perimeter())
+                {
+                    minTriangleParam = shapeArray[i].perimeter();
+                    shapeArray[i] = null;
+                }
+            }
+            // Circle logic
+            else if(shapeArray[i] instanceof Circle)
+            {
+                if(maxCircleParam < shapeArray[i].perimeter())
+                {
+                    shapeArray[i] = null;
+                }
+            }
+        }
+
+        //TODO TASK 3
+        double sumParallelogramParam = 0;
+        double sumTriangleParam = 0;
+
+        for (Shape currentShape :
+                shapeArray) {
+            if (currentShape instanceof Parallelogram)
+            {
+                sumParallelogramParam +=  currentShape.perimeter();
+            }
+            if(currentShape instanceof Triangle)
+            {
+                sumTriangleParam += currentShape.perimeter();
+            }
+        }
+
+
     }
 }
