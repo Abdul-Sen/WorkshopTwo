@@ -1,6 +1,5 @@
 package Shapes;
 
-import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 
 public class Parallelogram implements Shape {
@@ -43,7 +42,7 @@ public class Parallelogram implements Shape {
 
 
     @Override
-    public double perimeter() {
+    public double getPerimeter() {
         return getHeight()*2 + getWidth()*2;
     }
 
@@ -58,6 +57,6 @@ public class Parallelogram implements Shape {
         return "Parallelogram{" +
                 "w = " + getWidth() +
                 ", h = " + getHeight() +
-                '}' + " Perimeter = " + df.format(perimeter());
+                '}' + " Perimeter = " + df.format(getPerimeter());
     }
 }

@@ -21,7 +21,7 @@ public class Circle implements Shape {
 
     private double radius;
 
-    public double perimeter() {
+    public double getPerimeter() {
         return 2* Math.PI * getRadius();
     }
 
@@ -30,6 +30,6 @@ public class Circle implements Shape {
         DecimalFormat df = new DecimalFormat("0.0000");
         return "Circle{" +
                 "r = " + getRadius() +
-                '}' + " Perimeter= "+ df.format(perimeter());
+                '}' + " Perimeter= "+ df.format(getPerimeter());
     }
 }

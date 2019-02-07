@@ -3,8 +3,8 @@ package Shapes;
 public interface Shape {
 
     /**
-     * Finds the perimeter of the shape
-     * @return A double that represents the shape perimeter
+     * Finds the getPerimeter of the shape
+     * @return A double that represents the shape getPerimeter
      */
-    double perimeter();
+    double getPerimeter();
 }

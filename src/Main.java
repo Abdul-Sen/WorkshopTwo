@@ -1,6 +1,5 @@
 import Shapes.*;
 
-import javax.naming.PartialResultException;
 import java.io.*;
 
 
@@ -93,72 +92,106 @@ public class Main {
         System.out.println(counter + " shapes were created");
         for (Shape currentShape : shapeArray) {
             if(currentShape != null)
-                System.out.println(currentShape);
+            {
+                //System.out.println(currentShape);
+            }
         }
 
-        /*
-        TASK 2 AND TASK 3
-         */
-        System.out.println("<<<<<<<<<<<<TASK 2>>>>>>>>>>>>>>>");
+
+        //TASK 2
+        System.out.println("\n        /***************************************\n" +
+                           "         * TASK 2: Finding and removing objects*\n" +
+                           "         * *************************************/\n");
 
         //setting a minimum triangle parameter
-        double minTriangleParam = 0.0;
-        double maxCircleParam = 0.0;
+        double minTriangleParemeter = findMinParameter(shapeArray,"Triangle");
+        double maxCircleParemeter = findMaxParameter(shapeArray,"Circle");
 
-        //TODO add logic to Break out once both are set
-        //Setting min and max
-        for (Shape currentShape : shapeArray) {
-            if (currentShape instanceof Triangle)
+        removeShapeByParameter(shapeArray,"Triangle",minTriangleParemeter);
+        removeShapeByParameter(shapeArray,"Circle",maxCircleParemeter);
+
+
+        //TASK 3
+        System.out.println( "\n        /***************************************\n" +
+                            "         * TASK 3: Finding Sum Parameters      *\n" +
+                            "         * *************************************/\n");
+        System.out.println("Parellogram sum parameter: "+sumParemeter(shapeArray,"Parallelogram"));
+        System.out.println("Triangle sum parameter: " +sumParemeter(shapeArray,"Triangle"));
+
+
+    }
+
+    /**
+     *
+     * @param shapes the array of shape objects
+     * @param dynamicType the type for which you want to get the sum of paremeters
+     * @return sum of paremeters for that dynamic type from the array
+     */
+   private static double sumParemeter(Shape [] shapes, String dynamicType)
+    {
+        double sumParemeter = 0.0;
+        for (Shape currentShape:
+             shapes) {
+            if (currentShape == null) continue;
+            if (currentShape.getClass().getSimpleName().equals(dynamicType))
             {
-                minTriangleParam = currentShape.perimeter();
-            }
-            else if(currentShape instanceof Circle)
-            {
-                if(currentShape.perimeter() > maxCircleParam)
-                {
-                    maxCircleParam = currentShape.perimeter();
-                }
+                sumParemeter += currentShape.getPerimeter();
             }
         }
+        return sumParemeter;
+    }
 
-        //Deleting triangle with min param and removing them from array
+  private static double findMaxParameter(Shape [] shapeArray, String dynamicType)
+    {
+        double maxParameter = 0.0;
         for(int i = 0; i < shapeArray.length; i++)
         {
-            // Triangle logic
-            if(shapeArray[i] instanceof Triangle)
+            if (shapeArray[i] == null) continue;
+            if (shapeArray[i].getClass().getSimpleName().equals(dynamicType) && shapeArray[i].getPerimeter() > maxParameter)
             {
-                if(minTriangleParam > shapeArray[i].perimeter())
-                {
-                    minTriangleParam = shapeArray[i].perimeter();
-                    shapeArray[i] = null;
-                }
+                maxParameter = shapeArray[i].getPerimeter();
             }
-            // Circle logic
-            else if(shapeArray[i] instanceof Circle)
+        }
+        return maxParameter;
+    }
+
+    private static double findMinParameter(Shape [] shapeArray, String dynamicType)
+    {
+
+        double minParameter = 0.0;
+        //setting to arbitrary min parameter
+        for (Shape currentShape:
+             shapeArray) {
+            if(currentShape == null) continue;
+            if(currentShape.getClass().getSimpleName().equals(dynamicType))
             {
-                if(maxCircleParam < shapeArray[i].perimeter())
-                {
-                    shapeArray[i] = null;
-                }
+                minParameter = currentShape.getPerimeter();
+                break;
             }
         }
 
-        //TODO TASK 3
-        double sumParallelogramParam = 0;
-        double sumTriangleParam = 0;
-
-        for (Shape currentShape :
-                shapeArray) {
-            if (currentShape instanceof Parallelogram)
+        for(int i = 0; i < shapeArray.length; i++)
+        {
+            if (shapeArray[i] == null) continue;
+            if (shapeArray[i].getClass().getSimpleName().equals(dynamicType) && shapeArray[i].getPerimeter() < minParameter)
             {
-                sumParallelogramParam +=  currentShape.perimeter();
-            }
-            if(currentShape instanceof Triangle)
-            {
-                sumTriangleParam += currentShape.perimeter();
+                minParameter = shapeArray[i].getPerimeter();
             }
         }
+        return minParameter;
+    }
 
+    private static void removeShapeByParameter(Shape[] shapeArray, String dynamicType, double parameter)
+    {
 
+        for(int i = 0; i < shapeArray.length; i++)
+        {
+            if (shapeArray[i] == null) continue;
+            if(shapeArray[i].getClass().getSimpleName().equals(dynamicType) && shapeArray[i].getPerimeter() == parameter)
+            {
+                System.out.println("REMOVED : " + shapeArray[i]);
+                shapeArray[i] = null;
+            }
+        }
     }
 }

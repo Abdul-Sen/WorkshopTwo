@@ -21,7 +21,7 @@ public class Triangle implements Shape {
 
 
     @Override
-    public double perimeter() {
+    public double getPerimeter() {
         return getSide1() + getSide2() + getSide3();
     }
 
@@ -56,7 +56,7 @@ public class Triangle implements Shape {
                 "s1=" + side1 +
                 ", s2=" + side2 +
                 ", s3=" + side3 +
-                '}' + " Perimeter= " + df.format(perimeter());
+                '}' + " Perimeter= " + df.format(getPerimeter());
     }
 }
 
@@ -84,7 +84,7 @@ public class Triangle implements Shape {
 //    }
 //
 //    @Override
-//    public double perimeter() {
+//    public double getPerimeter() {
 //        return super.getHeight() + super.getWidth() + getSide3();
 //    }
 //
@@ -94,7 +94,7 @@ public class Triangle implements Shape {
 //                "side1=" + super.getHeight()+
 //                "side2=" + super.getWidth() +
 //                "side3=" + getSide3() +
-//                "} Perimeter= " + perimeter();
+//                "} Perimeter= " + getPerimeter();
 //    }
 //
 //}

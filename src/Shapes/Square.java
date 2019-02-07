@@ -26,10 +26,10 @@ public class Square extends Rectangle {
 
     /**
      *
-     * @return Square shape object with its perimeter
+     * @return Square shape object with its getPerimeter
      */
     @Override
     public String toString() {
-        return "Square{s=" + getLength() + "} Perimeter= " + super.perimeter(); //TODO: Is this OK to do? to not have a squares own perimemter function but to indicate that it has one?
+        return "Square{s=" + getLength() + "} Perimeter= " + super.getPerimeter(); //TODO: Is this OK to do? to not have a squares own perimemter function but to indicate that it has one?
     }
 }
