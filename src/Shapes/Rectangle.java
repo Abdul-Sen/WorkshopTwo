@@ -1,5 +1,7 @@
 package Shapes;
 
+import java.text.DecimalFormat;
+
 public class Rectangle extends Parallelogram {
 
     public Rectangle(double width, double height) {
@@ -17,7 +19,8 @@ public class Rectangle extends Parallelogram {
 
     @Override
     public String toString() {
-        return "Rectangle{ w = " + super.getHeight() + " h=" + super.getHeight() + "} Perimeter= " + super.perimeter();
+        DecimalFormat df = new DecimalFormat("0.0000");
+        return "Rectangle{ w = " + super.getHeight() + " h= " + super.getHeight() + "} Perimeter= " + df.format(super.getPerimeter());
     }
 
 

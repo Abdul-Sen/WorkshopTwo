@@ -4,7 +4,12 @@ import java.io.*;
 
 public class Main {
 
-private static Shape[] readShapes(String fileName) {
+    /**
+     * Accepts the filename as an argument and reads the comma separated file
+     * @param fileName A string containing the filename we wish to read
+     * @return an array of shapes created from the file
+     */
+    private static Shape[] readShapes(String fileName) {
     String s;
     int i = 0;
 
@@ -27,29 +32,23 @@ private static Shape[] readShapes(String fileName) {
             switch (tokens[0])
             {
                 case "Circle":
-                    if(tokens.length > 2)
-                        throw new TooManyParameters("Invalid side(s)!");
+                    if(tokens.length == 2)
                     shapeArray[i] = new Circle(Double.parseDouble(tokens[1]));
                     break;
                 case "Parallelogram":
-                    if(tokens.length > 3)
-                        throw new TooManyParameters("Invalid");
+                    if(tokens.length == 3)
                     shapeArray[i] = new Parallelogram(Double.parseDouble(tokens[1]),Double.parseDouble(tokens[2]));
                     break;
                 case "Rectangle":
-                    if(tokens.length > 3)
-                        throw new TooManyParameters("Invalid!!!");
+                    if(tokens.length == 3)
                     shapeArray[i] = new Rectangle(Double.parseDouble(tokens[1]),Double.parseDouble(tokens[2]));
                     break;
                 case "Square":
-                    if(tokens.length > 3)
-                        throw new TooManyParameters("Invalid!!!");
+                    if(tokens.length == 2)
                     shapeArray[i] = new Square(Double.parseDouble(tokens[1]));
                     break;
                 case "Triangle":
-                    if(tokens.length > 4)
-                        throw new TooManyParameters("Invalid!!!");
-
+                    if(tokens.length == 4)
                     shapeArray[i] = new Triangle(Double.parseDouble(tokens[1]),Double.parseDouble(tokens[2]),Double.parseDouble(tokens[3]));
                     break;
                 default:
@@ -61,11 +60,6 @@ private static Shape[] readShapes(String fileName) {
         catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
-        catch (TooManyParameters ex)
-        {
-            System.out.println(ex.getMessage());
-        }
-
     }
     } catch (IOException e) {
     System.out.println(e.getMessage());
@@ -74,6 +68,10 @@ private static Shape[] readShapes(String fileName) {
         return shapeArray;
     }
 
+    /**
+     * Main entery point into the program. Reads a csv shape file and then displays to the user
+     * @param args Argument 0 is the name of the text file
+     */
     public static void main(String [] args)
     {
         System.out.println(args[0]);
@@ -83,6 +81,8 @@ private static Shape[] readShapes(String fileName) {
         shapeArray = readShapes(args[0]);
         int counter = 0;
 
+
+
         for (Shape currentShape : shapeArray) {
             if(currentShape != null)
                 counter++;
@@ -91,7 +91,34 @@ private static Shape[] readShapes(String fileName) {
         System.out.println(counter + " shapes were created");
         for (Shape currentShape : shapeArray) {
             if(currentShape != null)
+            {
                 System.out.println(currentShape);
+            }
         }
-    }
+
+
+        //TASK 2
+        System.out.println("\n        /***************************************\n" +
+                           "         * TASK 2: Finding and removing objects*\n" +
+                           "         * *************************************/\n");
+
+        //setting a minimum triangle parameter
+        double minTriangleParemeter = ShapeUtilities.findMinParameter(shapeArray,"Triangle");
+        double maxCircleParemeter = ShapeUtilities.findMaxParameter(shapeArray,"Circle");
+
+        ShapeUtilities.removeShapeByParameter(shapeArray,"Triangle",minTriangleParemeter);
+        ShapeUtilities.removeShapeByParameter(shapeArray,"Circle",maxCircleParemeter);
+
+        ShapeUtilities.displayShapeArray(shapeArray);
+
+        //TASK 3
+        System.out.println( "\n        /***************************************\n" +
+                            "         * TASK 3: Finding Sum Parameters      *\n" +
+                            "         * *************************************/\n");
+
+
+        System.out.println("Parallelogram sum parameter: "+ ShapeUtilities.sumParemeter(shapeArray,"Parallelogram"));
+        System.out.println("Triangle sum parameter: " + ShapeUtilities.sumParemeter(shapeArray,"Triangle"));
+
+    } //Main ends
 }

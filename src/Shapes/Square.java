@@ -2,6 +2,10 @@ package Shapes;
 
 public class Square extends Rectangle {
 
+    /**
+     * Constructor that accepts a positive double and creates a square of that length
+     * @param length A positive double
+     */
     public Square(double length)
     {
         super(length,length);
@@ -11,16 +15,21 @@ public class Square extends Rectangle {
         }
     }
 
+    //getters and setters
     public void setLength(double length) {
         super.setHeight(length);
         super.setWidth(length);
     }
     public double getLength() {
-        return super.getHeight();
+        return super.getHeight(); //or getWidth, they are both same
     }
 
+    /**
+     *
+     * @return Square shape object with its getPerimeter
+     */
     @Override
     public String toString() {
-        return "Square{ length= " + getLength() + "} Perimeter= " + super.perimeter(); //TODO: Is this OK to do? to not have a squares own perimemter function but to indicate that it has one?
+        return "Square{s=" + getLength() + "} Perimeter= " + super.getPerimeter(); //TODO: Is this OK to do? to not have a squares own perimemter function but to indicate that it has one?
     }
 }
