@@ -1,5 +1,6 @@
 import Shapes.*;
 import java.io.*;
+import java.util.Arrays;
 
 
 public class Main {
@@ -74,14 +75,36 @@ public class Main {
      */
     public static void main(String [] args)
     {
+
+        //Lambda
+        ShapeArea calcShapeArea = (currentShape)->{
+            if(currentShape.getClass().getSimpleName().equals("Rectangle"))
+            {
+                Rectangle rec = (Rectangle) currentShape;
+                return rec.getHeight() * rec.getWidth();
+            }
+            else if(currentShape.getClass().getSimpleName().equals("Square"))
+            {
+                Square seq = (Square) currentShape;
+                return seq.getLength();
+            }
+            else if(currentShape.getClass().getSimpleName().equals("Circle"))
+            {
+                Circle circle = (Circle) currentShape;
+                return Math.PI *((circle.getRadius()*circle.getRadius()));
+            }
+            else{//TODO: Figure what to do
+               // System.out.println("None of the above");
+            }
+            return 0;
+        };
+
         System.out.println(args[0]);
         System.out.println("------->JAC 444 Assignment 1<-------\n" + "------->Task 1 ... <-------");
         Shape [] shapeArray;
 
         shapeArray = readShapes(args[0]);
         int counter = 0;
-
-
 
         for (Shape currentShape : shapeArray) {
             if(currentShape != null)
@@ -116,9 +139,24 @@ public class Main {
                             "         * TASK 3: Finding Sum Parameters      *\n" +
                             "         * *************************************/\n");
 
-
         System.out.println("Parallelogram sum parameter: "+ ShapeUtilities.sumParemeter(shapeArray,"Parallelogram"));
         System.out.println("Triangle sum parameter: " + ShapeUtilities.sumParemeter(shapeArray,"Triangle"));
+
+        System.out.println( "\n        /***************************************\n" +
+                            "         * TASK 4: Finding Areas               *\n"+
+                            "         * *************************************/\n");
+
+        System.out.println(Arrays.toString(shapeArray));
+
+        for (Shape current:
+             shapeArray) {
+            if(current != null)
+                if(calcShapeArea.findShapeArea(current) != 0)
+                {
+                    System.out.println(current);
+                    System.out.println("Area: " +calcShapeArea.findShapeArea(current));
+                }
+        }
 
     } //Main ends
 }
